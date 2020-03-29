@@ -1,0 +1,53 @@
+/*
+  quite a decent usage of :after pseude elements in this file
+  reason: usage of 'content' css property, which only work
+  in :before/:after pseude elements
+*/
+
+.grid {
+	display: flex;
+	width: 300px;
+	height: 300px;
+	flex-wrap: wrap;
+	border: 1px solid black;
+}
+
+.grid div {
+	width: 20px;
+	height: 20px;
+}
+
+.shooter:after {
+	content: "🦄";
+	display: block;
+	transform: scale(1.5) rotate(40deg);
+}
+
+.invader:after {
+	content: url(covid.png);
+	display: block;
+	transform: scale(1);
+}
+
+.boom:after {
+	display: block;
+	content: "💥";
+	animation: boom .250s ease-out;
+}
+
+.laser:after {
+	content: "🧻";
+	display: block; /* required to make transform work on pseude elements like before or after */
+	transform: scale(1.3) rotate(-30deg);
+}
+
+@keyframes boom {
+	0% {
+		transform: scale(0) rotate(0deg) translateY(0);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(3) rotate(80deg) translateY(2px);
+		opacity: .8;
+	}
+}
