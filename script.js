@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const squares = document.querySelectorAll('.grid div');
 	const resultDisplay = document.querySelector('#result');
+	const headlineArea = resultDisplay.parentElement;
 	let width = 15;
 	let currentShooterIndex = 202;
 	let currentInvaderIndex = 0;
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// decide whether game is over
 		// 1. the case, if invaders crash into shooter
 		if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
-			resultDisplay.textContent = '🤢 Game Over!';
+			headlineArea.textContent = '🤢 Game Over!';
 			squares[currentShooterIndex].classList.add('boom');
 			clearInterval(invaderIntervalId);
 		}
@@ -76,14 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 2. the case, if invaders made their way through all the world (but theoretcially not possible as they'd crash into the shooter before)
 		for (let i = 0; i <= alienInvaders.length - 1; i++) {
 			if (alienInvaders[i] > squares.length - (width - 1)) {
-				resultDisplay.textContent = 'Game Over!';
+				headlineArea.textContent = 'Game Over!';
 				clearInterval(invaderIntervalId);
 			}
 		}
 
 		// decide a win
 		if (alienInvadersTakenDown.length === alienInvaders.length) {
-			resultDisplay.textContent = 'YOU WIN!! 🎉🎉🎉';
+			document.body.classList.add('you-win');
+			headlineArea.textContent = 'YOU WIN!! 🎉🎉🎉';
 			clearInterval(invaderIntervalId);
 		}
 	}

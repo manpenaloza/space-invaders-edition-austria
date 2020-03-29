@@ -21,6 +21,11 @@
 	content: "🦄";
 	display: block;
 	transform: scale(1.5) rotate(40deg);
+	transition: transform 1s ease-out;
+}
+
+body.you-win .shooter:after {
+	transform: scale(4) rotate(360deg) translateY(-20px);
 }
 
 .invader:after {
